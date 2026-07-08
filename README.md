@@ -1,12 +1,12 @@
 # IPSec and DMVPN Security Lab
 
-A reproducible Cisco/GNS3 security lab for IPSec with IKEv1/IKEv2, certificate-based authentication, SA rekeying, and DMVPN Phase 3 spoke-to-spoke shortcuts.
+> A reproducible Cisco/GNS3 security lab for IPSec with IKEv1/IKEv2, certificate-based authentication, SA rekeying, and DMVPN Phase 3 spoke-to-spoke shortcuts.
 
 [![GNS3](https://img.shields.io/badge/GNS3-lab-orange)](https://www.gns3.com/)
 [![Academic](https://img.shields.io/badge/Academic-SAAR%202025%2F2026-blue)](#academic-context)
 
-[!WARNING]
-This repository documents controlled academic network-security lab work. Run the commands and scenarios only in isolated environments where you have authorization. Licensed appliance images, course handouts, raw packet captures, and local lab state are intentionally excluded.
+> [!WARNING]
+> This repository documents controlled academic network-security lab work. Run the commands and scenarios only in isolated environments where you have authorization. Licensed appliance images, course handouts, raw packet captures, and local lab state are intentionally excluded.
 
 ## Overview
 
