@@ -1,0 +1,27 @@
+crypto ikev2 proposal SAAR-IKEV2
+ encryption aes-cbc-256
+ integrity sha512
+ prf sha512
+ group 16
+crypto ikev2 policy SAAR-IKEV2
+ proposal SAAR-IKEV2
+crypto ikev2 keyring SAAR-KEYRING
+ peer R2
+  address 2.2.2.2
+  pre-shared-key {{IPSEC_PSK}}
+crypto ikev2 profile SAAR-IKEV2
+ match identity remote address 2.2.2.2 255.255.255.255
+ authentication local pre-share
+ authentication remote pre-share
+ keyring local SAAR-KEYRING
+crypto ipsec transform-set ESP-AES-SHA esp-aes esp-sha-hmac
+ mode tunnel
+crypto ipsec profile SAAR-IPSEC
+ set transform-set ESP-AES-SHA
+ set ikev2-profile SAAR-IKEV2
+interface Tunnel0
+ ip unnumbered GigabitEthernet0/1
+ tunnel source Loopback0
+ tunnel destination 2.2.2.2
+ tunnel mode ipsec ipv4
+ tunnel protection ipsec profile SAAR-IPSEC

@@ -1,0 +1,22 @@
+crypto pki trustpoint SAAR-CA
+ enrollment url {{SCEP_URL}}
+ subject-name CN={{ROUTER_NAME}}
+ revocation-check crl
+crypto pki authenticate SAAR-CA
+crypto pki enroll SAAR-CA
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha
+ authentication rsa-sig
+ group 5
+ lifetime 86400
+crypto ipsec transform-set ESP-AES-SHA esp-aes esp-sha-hmac
+ mode tunnel
+crypto ipsec profile IKEV1-RSA
+ set transform-set ESP-AES-SHA
+interface Tunnel0
+ ip unnumbered {{LAN_INTERFACE}}
+ tunnel source Loopback0
+ tunnel destination {{PEER_ADDRESS}}
+ tunnel mode ipsec ipv4
+ tunnel protection ipsec profile IKEV1-RSA

@@ -1,0 +1,17 @@
+crypto isakmp policy 10
+ encryption aes 256
+ hash sha
+ authentication pre-share
+ group 5
+ lifetime 86400
+crypto isakmp key {{IPSEC_PSK}} address {{PEER_ADDRESS}}
+crypto ipsec transform-set AH-SHA ah-sha-hmac
+ mode tunnel
+crypto ipsec profile IKEV1-AH
+ set transform-set AH-SHA
+interface Tunnel0
+ ip unnumbered {{LAN_INTERFACE}}
+ tunnel source Loopback0
+ tunnel destination {{PEER_ADDRESS}}
+ tunnel mode ipsec ipv4
+ tunnel protection ipsec profile IKEV1-AH

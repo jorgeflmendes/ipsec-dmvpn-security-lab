@@ -1,23 +1,5 @@
-# Architecture Notes - IPSec and DMVPN Security Lab
+# Architecture
 
-## Lab Topology
+R1 and R2 use loopback addresses as IPsec tunnel endpoints over a routed public underlay. The configuration directory covers IKEv1/AH, IKEv1/RSA/ESP, and IKEv2/ESP.
 
-The IPSec topology connects two private sites across a public transit network using Cisco routers. The DMVPN topology uses one hub and two spokes over a public underlay, with NHRP enabling direct spoke-to-spoke forwarding after initial redirection.
-
-## Evidence Flow
-
-The repository keeps the final report text and selected screenshot figures. Raw captures and appliance images are excluded.
-
-## Publication Boundary
-
-The repository keeps report source and selected reviewed evidence. It deliberately excludes:
-
-- Cisco/GNS3 appliance images
-- raw Wireshark captures
-- private course PDFs
-- local debug logs
-- GNS3 project IDs
-
-## Reproduction Assumptions
-
-The lab was executed in GNS3 using Cisco/GNS3 appliances and Linux containers. Re-running the full topology requires local access to those appliances and the original lab guide.
+DMVPN uses one mGRE/NHRP hub and two spokes. OSPF provides underlay reachability; RIP advertises the overlay networks. NHRP redirect on the hub and shortcut on the spokes enable direct spoke-to-spoke forwarding after the initial flow.

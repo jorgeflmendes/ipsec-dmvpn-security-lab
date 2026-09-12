@@ -1,0 +1,9 @@
+interface Tunnel0
+ ip address {{TUNNEL_ADDRESS}} 255.255.255.0
+ tunnel source Loopback0
+ tunnel mode gre multipoint
+ ip nhrp map 10.10.10.1 1.1.1.1
+ ip nhrp map multicast 1.1.1.1
+ ip nhrp nhs 10.10.10.1
+ ip nhrp network-id 1
+ ip nhrp shortcut
